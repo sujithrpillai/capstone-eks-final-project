@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+ name: db-initializer
+spec:
+ template:
+   spec:
+     containers:
+     - image: 874954573048.dkr.ecr.us-east-1.amazonaws.com/e-jobs:latest
+       name: db-init-job
+       imagePullPolicy: "Always"
+       env:
+       - name: DBHOST
+         value: "database-server-mariadb"
+       - name: DBUSER
+         value: "root"
+       - name: DBPASSWORD
+         valueFrom:
+           secretKeyRef:
+             name: database-server-mariadb
+             key: mariadb-root-password
+     restartPolicy: Never
+ backoffLimit: 4
