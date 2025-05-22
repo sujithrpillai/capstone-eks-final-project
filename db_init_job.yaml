@@ -6,7 +6,7 @@ spec:
  template:
    spec:
      containers:
-     - image: 874954573048.dkr.ecr.us-east-1.amazonaws.com/e-jobs:latest
+     - image: srpillai/e-db:latest
        name: db-init-job
        imagePullPolicy: "Always"
        env:

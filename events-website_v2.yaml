@@ -17,7 +17,7 @@ spec:
        ver: v2.0
    spec:
      containers:
-      - image: 874954573048.dkr.ecr.us-east-1.amazonaws.com/e-web:v2
+      - image: srpillai/e-web:v2
         name: events-web
         ports:
         - containerPort: 8080
