@@ -2,7 +2,9 @@
 
 AWS EKS Final Project
 
-Pre-requisites
+## Pre-requisites
+
+Following are the pre-requisites to implement the project:
 
 - AWS Account with a VPC
 - AWS IAM user with permissions to create and manage resources in the AWS account
@@ -12,6 +14,25 @@ Pre-requisites
 - Helm installed
 - Docker installed
 
+The detailed steps are given below for setting up the deployment server
+
+```bash
+aws configure
+sudo yum install -y git docker 
+curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.31.2/2024-11-15/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
+export ARCH=amd64
+export PLATFORM=$(uname -s)_$ARCH
+curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
+tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
+sudo mv /tmp/eksctl /usr/local/bin
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+source ~/.bashrc
+nvm install --lts
+sudo usermod -aG docker $USER
+newgrp docker
+```
 ## Procedure to implement the project
 
 Following are the high level steps to implement the project:
